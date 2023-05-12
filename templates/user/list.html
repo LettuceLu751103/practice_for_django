@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用者列表</title>
+</head>
+<body>
+
+
+    <h3>{{ msg }}</h3>
+
+    <ul>
+        {% for user in users %}
+            <li>{{ user.id }} - {{ user.name }} : {{ user.phone }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

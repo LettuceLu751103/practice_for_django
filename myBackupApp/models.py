@@ -46,3 +46,19 @@ class DeviceEntity(models.Model):
         db_table = 't_device'
         verbose_name = '設備管理'
         verbose_name_plural = verbose_name
+
+class CompanyEntity(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    owner = models.CharField(max_length=50)
+    phone = models.CharField(max_length=10)
+    address = models.CharField(max_length=200)
+    created_time = models.DateField(auto_now_add=True)
+    updated_time = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 't_company'
+        verbose_name = '公司管理'
+        verbose_name_plural = verbose_name

@@ -47,18 +47,24 @@ class DeviceEntity(models.Model):
         verbose_name = '設備管理'
         verbose_name_plural = verbose_name
 
-class CompanyEntity(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+
+class Company(models.Model):
+    name = models.CharField(max_length=50)
     owner = models.CharField(max_length=50)
     phone = models.CharField(max_length=10)
-    address = models.CharField(max_length=200)
-    created_time = models.DateField(auto_now_add=True)
-    updated_time = models.DateField(auto_now=True)
+    address = models.CharField(max_length=100)
+    logo = models.ImageField(upload_to='company', null=True, blank=True, width_field='logo_width', height_field='logo_height')
+    logo_width = models.IntegerField(null=True, blank=True)
+    logo_height = models.IntegerField(null=True, blank=True)
+    opend = models.BooleanField(default=False)
+    remark = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        db_table = 't_company'
+        db_table = 'tt_company'
         verbose_name = '公司管理'
         verbose_name_plural = verbose_name

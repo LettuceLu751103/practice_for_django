@@ -36,5 +36,6 @@ def index(request:HttpRequest):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', index),
-    path('user/', include('myBackupApp.urls'))
+    path('user/', include('myBackupApp.urls')),
+    path('device/', include('myBackupApp.urls'))
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

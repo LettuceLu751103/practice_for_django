@@ -1,6 +1,10 @@
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
-from myBackupApp.models import UserEntity
+from .models import UserEntity
+
+from .models import DeviceEntity
+
+
 # Create your views here.
 
 def user_list(request):
@@ -23,3 +27,14 @@ def add_user(request):
     u1.save()
 
     return redirect('/user/list')
+
+
+def find_device(request):
+
+    # 從查詢參數中獲取價格區間 price1, price2 之間有哪些設備使用 filter
+    # 以下的範例查詢 price >= 20000, price <= 47000
+    price1 = 1000
+    price2 = 47000
+    results = DeviceEntity.objects.filter(price__gte=price1).filter(price__lte=price2).all()
+    print(results)
+    return render(request, 'device/list.html', locals())

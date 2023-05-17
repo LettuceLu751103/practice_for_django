@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Device Lists</title>
+</head>
+<body>
+    <ul>
+    {% for device in results %}
+        <li>
+            {{ device.id }} - {{ device.name }} - {{ device.price }}
+        </li>
+
+    {% endfor %}
+    </ul>
+</body>
+</html>

@@ -33,8 +33,10 @@ def find_device(request):
 
     # 從查詢參數中獲取價格區間 price1, price2 之間有哪些設備使用 filter
     # 以下的範例查詢 price >= 20000, price <= 47000
-    price1 = 1000
-    price2 = 47000
-    results = DeviceEntity.objects.filter(price__gte=price1).filter(price__lte=price2).all()
-    print(results)
+    origins = DeviceEntity.objects.all()
+    price1 = request.GET.get('price1', 0)
+    price2 = request.GET.get('price2', 500000)
+    price3 = request.GET.get('price3', 0)
+    results = DeviceEntity.objects.filter(price__gte=price1).filter(price__lte=price2).exclude(price=price3).all()
+    print(origins)
     return render(request, 'device/list.html', locals())

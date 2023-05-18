@@ -5,6 +5,27 @@
     <title>Device Lists</title>
 </head>
 <body>
+<h3>Input price range...</h3>
+<div>
+    <form method="get">
+        <input name='price1' value="{% if price1 %}{{ price1 }}{% else %}{{ 0 }}{% endif %}"> -
+        <input name='price2' value="{% if price2 %}{{ price2 }}{% else %}{{ 100000 }}{% endif %}">
+        <h5>Exclude</h5>
+        <input name="price3" value="{% if price3 %}{{ price3 }}{% else %}{{ 0 }}{% endif %}">
+        <button type="submit"> 查詢 </button>
+    </form>
+</div>
+
+
+<h3> Original Results </h3>
+<ul>
+    {% for origin in origins %}
+        <li>
+            {{ origin.id }} - {{ origin.name }} - {{ origin.price }}
+        </li>
+    {% endfor %}
+</ul>
+<h3> Search Results </h3>
     <ul>
     {% for device in results %}
         <li>

@@ -5,6 +5,11 @@
     <title>Device Lists</title>
 </head>
 <body>
+<h3>Single First Object</h3>
+{{ singlefirstObj.id }} - {{ singlefirstObj.name }} - {{ singlefirstObj.price }}
+
+<h4>Single Last Object</h4>
+{{ singleLastObj.id }} - {{ singleLastObj.name }} - {{ singleLastObj.price }}
 <h3>Input price range...</h3>
 <div>
     <form method="get">
@@ -18,14 +23,16 @@
 
 
 <h3> Original Results </h3>
+<h4> 共有 {{ originsCount }} 筆 數據</h4>
 <ul>
     {% for origin in origins %}
         <li>
-            {{ origin.id }} - {{ origin.name }} - {{ origin.price }}
+            {{ forloop.counter }} - id = {{ origin.id }} - {{ origin.name }} - {{ origin.price }}
         </li>
     {% endfor %}
 </ul>
 <h3> Search Results </h3>
+<h4> 共有 {{ resultsCount }} 筆 數據</h4>
     <ul>
     {% for device in results %}
         <li>

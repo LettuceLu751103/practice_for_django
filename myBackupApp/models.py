@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class UserEntity(models.Model):
     name = models.CharField(max_length=30)
     age = models.IntegerField(default=0)
@@ -15,6 +16,20 @@ class UserEntity(models.Model):
         db_table = 't_user'
         verbose_name = '用戶管理'
         verbose_name_plural = verbose_name
+
+class RealUserEntity(models.Model):
+    user = models.OneToOneField(UserEntity, on_delete=models.CASCADE)
+    realname = models.CharField(max_length=20, verbose_name='真實姓名')
+    number = models.CharField(max_length=10, verbose_name='證件號碼')
+    real_type = models.IntegerField(choices=((0, '身分證'), (1, '駕照'), (2, '護照')), verbose_name='證件類型')
+    image1 = models.ImageField(upload_to='user/real', verbose_name='正面照')
+    image2 = models.ImageField(upload_to='user/real', verbose_name='反面照')
+
+    def __str__(self):
+        return self.realname
+    class Meta:
+        db_table = 't_realuser'
+        verbose_name = verbose_name_plural = '實名認證表'
 
 class CategoryEntity(models.Model):
     name = models.CharField(max_length=30)
